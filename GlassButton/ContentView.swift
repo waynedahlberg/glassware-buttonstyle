@@ -11,7 +11,11 @@ struct ContentView: View {
   var body: some View {
     ZStack {
       NoiseBackgroundView()
-      HeaderView()
+      VStack {
+        HeaderView()
+          .padding(.top, 96)
+        Spacer()
+      }
     }
     .ignoresSafeArea(.all)
     .persistentSystemOverlays(.hidden)
