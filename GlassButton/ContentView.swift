@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-      ZStack {
-        NoiseBackgroundView()
-        HeaderView()
-      }
+  var body: some View {
+    ZStack {
+      NoiseBackgroundView()
+      HeaderView()
     }
+    .ignoresSafeArea(.all)
+    .persistentSystemOverlays(.hidden)
+  }
 }
 
 #Preview {
-    ContentView()
+  ContentView()
 }
