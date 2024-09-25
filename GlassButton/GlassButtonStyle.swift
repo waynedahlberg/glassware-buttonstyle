@@ -16,6 +16,8 @@ struct LinkButtonStyle: ButtonStyle {
 
 // MARK: - Glass Buttonstyle
 struct GlassButtonStyle: ButtonStyle {
+  @Binding var isPressed: Bool
+  
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .padding(.vertical, 8)
@@ -41,13 +43,18 @@ struct GlassButtonStyle: ButtonStyle {
         }
       )
       .clipShape(RoundedRectangle(cornerRadius: 9999))
+      .scaleEffect(configuration.isPressed ? 0.9 : 1)
       .shadow(color: Color.black.opacity(0.1), radius: 78, x: 0, y: 78)
       .shadow(color: Color.black.opacity(0.07), radius: 50, x: 0, y: 50)
       .shadow(color: Color.black.opacity(0.06), radius: 30, x: 0, y: 30)
       .shadow(color: Color.black.opacity(0.04), radius: 16, x: 0, y: 16)
       .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 6)
       .shadow(color: Color.black.opacity(0.02), radius: 2, x: 0, y: 2)
-      .scaleEffect(configuration.isPressed ? 0.95 : 1)
       .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
+      .onChange(of: configuration.isPressed) { _, newValue in
+        isPressed = newValue
+      }
   }
 }
+
+
